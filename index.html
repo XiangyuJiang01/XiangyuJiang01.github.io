@@ -42,6 +42,10 @@
   a:hover { text-decoration: underline; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px; }
 
+  /* language switch */
+  html[data-lang="en"] .zh { display: none !important; }
+  html[data-lang="zh"] .en { display: none !important; }
+
   /* nav */
   nav {
     position: sticky; top: 0; z-index: 10;
@@ -51,30 +55,30 @@
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
   .nav-name { font-weight: 700; letter-spacing: .2px; }
-  .nav-links { display: flex; gap: 18px; align-items: center; }
+  .nav-links { display: flex; gap: 16px; align-items: center; }
   .nav-links a { color: var(--text); font-size: 15px; }
   .nav-links a:hover { color: var(--accent); text-decoration: none; }
-  .theme-btn {
+  .icon-btn {
     background: none; border: 1px solid var(--border); color: var(--text);
-    border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 15px;
+    border-radius: 8px; height: 34px; min-width: 34px; padding: 0 8px; cursor: pointer; font-size: 14px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  .theme-btn:hover { border-color: var(--accent); }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   /* hero */
   header.hero { padding: 44px 0 12px; }
-  .hero-grid { display: flex; gap: 28px; align-items: flex-start; }
+  .hero-grid { display: flex; gap: 30px; align-items: flex-start; }
   .hero-text { flex: 1; min-width: 0; }
   h1 { font-size: 30px; margin: 0 0 4px; letter-spacing: -.2px; }
   .role { color: var(--muted); font-size: 16px; margin: 0 0 14px; }
   .role strong { color: var(--text); }
   .avatar {
-    width: 300px; height: 300px; border-radius: 16px; flex-shrink: 0;
+    width: 300px; height: 340px; border-radius: 16px; flex-shrink: 0;
     background: linear-gradient(135deg, var(--accent), #8b5cf6);
     color: #fff; display: flex; align-items: center; justify-content: center;
     font-size: 72px; font-weight: 700; letter-spacing: 1px;
     box-shadow: 0 8px 30px rgba(0,0,0,.18);
-    object-fit: cover;
+    object-fit: cover; object-position: center;
   }
   .socials { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
   .socials a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; }
@@ -98,9 +102,7 @@
   /* publications */
   .pub { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .pub:last-child { border-bottom: none; }
-  .venue {
-    flex-shrink: 0; width: 78px; text-align: center; padding-top: 2px;
-  }
+  .venue { flex-shrink: 0; width: 80px; text-align: center; padding-top: 2px; }
   .badge {
     display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .3px;
     color: var(--badge-text); padding: 3px 8px; border-radius: 6px; line-height: 1.4;
@@ -129,22 +131,23 @@
 
   @media (max-width: 560px) {
     .hero-grid { flex-direction: column-reverse; align-items: center; }
-    .avatar { width: 220px; height: 220px; font-size: 52px; }
-    .nav-links a:not(.theme-wrap) { display: none; }
-    .venue { width: 64px; }
+    .avatar { width: 240px; height: 272px; font-size: 56px; }
+    .nav-links a { display: none; }
+    .venue { width: 66px; }
   }
 </style>
 </head>
 <body>
 <nav>
   <div class="wrap nav-inner">
-    <span class="nav-name">Xiangyu Jiang</span>
+    <span class="nav-name"><span class="en">Xiangyu Jiang</span><span class="zh">蒋翔宇</span></span>
     <span class="nav-links">
-      <a href="#about">About</a>
-      <a href="#news">News</a>
-      <a href="#publications">Publications</a>
-      <a href="cv.pdf">CV</a>
-      <button class="theme-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+      <a href="#about"><span class="en">About</span><span class="zh">关于</span></a>
+      <a href="#news"><span class="en">News</span><span class="zh">动态</span></a>
+      <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span></a>
+      <a href="cv.pdf"><span class="en">CV</span><span class="zh">简历</span></a>
+      <button class="icon-btn" id="langBtn" title="Switch language" aria-label="Switch language">中文</button>
+      <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
     </span>
   </div>
 </nav>
@@ -154,26 +157,38 @@
     <div class="hero-grid">
       <div class="hero-text">
         <h1>Xiangyu Jiang <span style="color:var(--muted);font-weight:600;font-size:20px;">蒋翔宇</span></h1>
-        <p class="role">Incoming Ph.D. Student in Artificial Intelligence<br/><strong>Southwestern University of Finance and Economics</strong> (Fall 2026)</p>
+        <p class="role">
+          <span class="en">Incoming Ph.D. Student in Artificial Intelligence<br/><strong>Southwestern University of Finance and Economics</strong> (Fall 2026)</span>
+          <span class="zh">人工智能方向准博士生<br/><strong>西南财经大学</strong>（2026 年秋季入学）</span>
+        </p>
         <div class="socials">
           <a href="mailto:xj70@sussex.ac.uk" title="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email
           </a>
         </div>
 
-        <h2>About</h2>
-        <p class="bio">
+        <h2><span class="en">About</span><span class="zh">关于</span></h2>
+        <p class="bio en">
           I am an incoming Ph.D. student in Artificial Intelligence at the
           <strong>Southwestern University of Finance and Economics</strong> (enrolling Fall 2026).
           I received my M.Sc. in Artificial Intelligence and Adaptive Systems with
           <strong>Distinction</strong> from the <strong>University of Sussex</strong>, where I was
           awarded the <strong>Dean's Honour Medal</strong> of the Artificial Intelligence Institute.
         </p>
-        <p class="bio">
+        <p class="bio en">
           My research centers on building machine learning systems that are trustworthy and
           reliable under uncertainty, including two solo-authored papers at
           <strong>ICML 2026</strong> and <strong>UAI 2026</strong>. I am broadly interested in
           conformal prediction, generative-model priors, and world models.
+        </p>
+        <p class="bio zh">
+          我是<strong>西南财经大学</strong>人工智能方向的准博士生（2026 年秋季入学）。此前在
+          <strong>萨塞克斯大学</strong>获得人工智能与自适应系统硕士学位（<strong>Distinction</strong>，英制最高等级），
+          并获人工智能学院<strong>院长荣誉勋章</strong>。
+        </p>
+        <p class="bio zh">
+          我的研究聚焦于在不确定性下构建可信、可靠的机器学习系统，已有两篇<strong>独立作者</strong>论文发表于
+          <strong>ICML 2026</strong> 与 <strong>UAI 2026</strong>。研究兴趣涵盖共形预测、生成模型先验与世界模型。
         </p>
       </div>
       <img class="avatar" src="assets/profile.jpg" alt="Xiangyu Jiang"
@@ -182,34 +197,52 @@
   </header>
 
   <section>
-    <h2>Research Interests</h2>
-    <ul class="interests">
+    <h2><span class="en">Research Interests</span><span class="zh">研究兴趣</span></h2>
+    <ul class="interests en">
       <li>Trustworthy generative AI: retrieval-augmented generation, citation faithfulness, and risk control</li>
       <li>Conformal prediction and uncertainty quantification under distribution shift</li>
       <li>Reliable machine learning with generative priors: diffusion-model priors and calibration-aware learning</li>
       <li>World models and reinforcement learning</li>
     </ul>
+    <ul class="interests zh">
+      <li>可信生成式人工智能：检索增强生成、引用忠实性与风险控制</li>
+      <li>分布漂移下的共形预测与不确定性量化</li>
+      <li>生成先验驱动的可靠机器学习：扩散模型先验与校准感知学习</li>
+      <li>世界模型与强化学习</li>
+    </ul>
   </section>
 
   <section id="news">
-    <h2>News</h2>
+    <h2><span class="en">News</span><span class="zh">动态</span></h2>
     <ul class="news">
-      <li><span class="date">May 2026</span><span>&ldquo;Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift&rdquo; (solo-authored) is accepted to <strong>UAI 2026</strong>.</span></li>
-      <li><span class="date">Jan 2026</span><span>&ldquo;CiteGuard&rdquo; (solo-authored) is accepted to <strong>ICML 2026</strong>.</span></li>
-      <li><span class="date">2026</span><span>Admitted as an incoming Ph.D. student in Artificial Intelligence at SWUFE (Fall 2026).</span></li>
+      <li><span class="date">2026.05</span>
+        <span class="en">&ldquo;Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift&rdquo; (solo-authored) is accepted to <strong>UAI 2026</strong>.</span>
+        <span class="zh">独立作者论文《Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift》被 <strong>UAI 2026</strong> 录用。</span>
+      </li>
+      <li><span class="date">2026.01</span>
+        <span class="en">&ldquo;CiteGuard&rdquo; (solo-authored) is accepted to <strong>ICML 2026</strong>.</span>
+        <span class="zh">独立作者论文《CiteGuard》被 <strong>ICML 2026</strong> 录用。</span>
+      </li>
+      <li><span class="date">2026</span>
+        <span class="en">Admitted as an incoming Ph.D. student in Artificial Intelligence at SWUFE (Fall 2026).</span>
+        <span class="zh">获西南财经大学人工智能方向博士录取（2026 年秋季入学）。</span>
+      </li>
     </ul>
   </section>
 
   <section id="publications">
-    <h2>Publications</h2>
-    <p class="pub-meta" style="margin-bottom:6px;"><span class="me" style="color:var(--text);font-weight:700;">Bold</span> denotes my name. (* solo-authored)</p>
+    <h2><span class="en">Publications</span><span class="zh">论文</span></h2>
+    <p class="pub-meta" style="margin-bottom:6px;">
+      <span class="en"><strong style="color:var(--text);">Bold</strong> denotes my name.</span>
+      <span class="zh"><strong style="color:var(--text);">加粗</strong>为本人姓名。</span>
+    </p>
 
     <div class="pub">
       <div class="venue"><span class="badge b-icml">ICML 2026</span></div>
       <div class="pub-body">
         <div class="pub-title">CiteGuard: Conformal False-Discovery Control for Faithful Retrieval-Augmented Generation</div>
         <div class="pub-authors"><span class="me">Xiangyu Jiang</span></div>
-        <div class="pub-meta">Int. Conf. on Machine Learning (ICML), 2026 <span class="tag">CCF A</span><span class="tag solo">Solo author</span></div>
+        <div class="pub-meta">Int. Conf. on Machine Learning (ICML), 2026 <span class="tag">CCF A</span><span class="tag solo"><span class="en">Solo author</span><span class="zh">独立作者</span></span></div>
       </div>
     </div>
 
@@ -218,7 +251,7 @@
       <div class="pub-body">
         <div class="pub-title">Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift</div>
         <div class="pub-authors"><span class="me">Xiangyu Jiang</span></div>
-        <div class="pub-meta">Conf. on Uncertainty in Artificial Intelligence (UAI), 2026 <span class="tag">CCF B</span><span class="tag solo">Solo author</span></div>
+        <div class="pub-meta">Conf. on Uncertainty in Artificial Intelligence (UAI), 2026 <span class="tag">CCF B</span><span class="tag solo"><span class="en">Solo author</span><span class="zh">独立作者</span></span></div>
       </div>
     </div>
 
@@ -263,41 +296,56 @@
       <div class="pub-body">
         <div class="pub-title">Energy Consumption Optimization of Edge Computing Based on Reinforcement Learning</div>
         <div class="pub-authors"><span class="me">Xiangyu Jiang</span></div>
-        <div class="pub-meta">International Conference, 2021 <span class="tag solo">Solo author</span></div>
+        <div class="pub-meta">International Conference, 2021 <span class="tag solo"><span class="en">Solo author</span><span class="zh">独立作者</span></span></div>
       </div>
     </div>
 
-    <h2>Preprints / Under Review</h2>
+    <h2><span class="en">Preprints / Under Review</span><span class="zh">预印本 / 在投</span></h2>
     <div class="pub">
       <div class="venue"><span class="badge b-neurips">NeurIPS 26</span></div>
       <div class="pub-body">
         <div class="pub-title">Calibrated Guidance for Diffusion Policies in Offline Reinforcement Learning</div>
         <div class="pub-authors"><span class="me">Xiangyu Jiang</span>, et al.</div>
-        <div class="pub-meta">Submitted to NeurIPS, 2026 <span class="tag">CCF A</span><span class="tag review">Under review</span></div>
+        <div class="pub-meta">Submitted to NeurIPS, 2026 <span class="tag">CCF A</span><span class="tag review"><span class="en">Under review</span><span class="zh">在投</span></span></div>
       </div>
     </div>
   </section>
 
   <footer>
-    &copy; <span id="year"></span> Xiangyu Jiang. Hosted on GitHub Pages.
+    &copy; <span id="year"></span> Xiangyu Jiang (蒋翔宇).
+    <span class="en">Hosted on GitHub Pages.</span><span class="zh">由 GitHub Pages 托管。</span>
   </footer>
 </div>
 
 <script>
   (function () {
-    var saved = localStorage.getItem('theme');
+    var root = document.documentElement;
+
+    var savedTheme = localStorage.getItem('theme');
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var theme = saved || (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-    var btn = document.getElementById('themeBtn');
-    function paint() { btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
-    paint();
-    btn.addEventListener('click', function () {
-      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
+    root.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+    var themeBtn = document.getElementById('themeBtn');
+    function paintTheme() { themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+    paintTheme();
+    themeBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      paint();
+      paintTheme();
     });
+
+    var savedLang = localStorage.getItem('lang') || 'en';
+    root.setAttribute('data-lang', savedLang);
+    var langBtn = document.getElementById('langBtn');
+    function paintLang() { langBtn.textContent = root.getAttribute('data-lang') === 'en' ? '中文' : 'EN'; }
+    paintLang();
+    langBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-lang') === 'en' ? 'zh' : 'en';
+      root.setAttribute('data-lang', next);
+      localStorage.setItem('lang', next);
+      paintLang();
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   })();
 </script>
