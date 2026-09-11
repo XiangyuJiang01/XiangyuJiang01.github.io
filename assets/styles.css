@@ -182,7 +182,8 @@ details[open] .expand-icon::after { transform: rotate(0); }
 .orbit-node { position: absolute; top: 19%; left: 68%; width: 8px; height: 8px; border-radius: 50%; background: #c8ecf8; box-shadow: 0 0 24px #79b8cf; animation: orbit-breathe 5s ease-in-out infinite; }
 .orbital-label { font: 8px var(--mono); letter-spacing: .1em; color: #88a7b4; position: absolute; bottom: 0; left: 18px; }
 .publications-section { padding-bottom: 70px; }
-.publications-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 56px; }
+.publications-section .section-topline { margin-bottom: 28px; }
+.publications-heading { margin-bottom: 28px; }
 .publications-intro { color: var(--muted); font-size: 12px; line-height: 1.8; margin: 0 0 4px; }
 .publication-list > .pub-meta { display: block; font-size: 10px; margin: 0 0 17px !important; color: var(--muted); }
 .publication-list > .pub-meta strong { color: var(--ink) !important; }
@@ -211,7 +212,7 @@ details[open] .expand-icon::after { transform: rotate(0); }
 .contact-content .eyebrow { font-size: 9px; }
 .contact-section h2 { font-size: clamp(54px, 7.1vw, 112px); letter-spacing: -.06em; font-weight: 400; line-height: 1.04; margin: 38px 0 38px; }
 .contact-section h2 em { color: var(--accent); }
-.contact-email { display: inline-flex; align-items: center; gap: 65px; font-size: clamp(18px, 2.2vw, 31px); border-bottom: 1px solid currentColor; padding: 0 0 11px; letter-spacing: -.01em; }
+.contact-email { display: inline-flex; align-items: center; gap: 65px; font-size: clamp(18px, 2.2vw, 31px); border-bottom: 1px solid currentColor; padding: 0 0 11px; margin-top: 30px; letter-spacing: -.01em; }
 .contact-email > span { transition: transform .3s; }
 .contact-email:hover > span { transform: translate(4px, -4px); }
 .contact-links { display: flex; gap: 35px; margin-top: 32px; font-size: 11px; }
@@ -309,8 +310,8 @@ html[data-motion="paused"] *, html[data-motion="paused"] *::before, html[data-mo
   .research-name { font-size: 22px; }
   .research-item summary { padding: 24px 0; }
   .research-detail { font-size: 12px; }
-  .publications-heading { display: block; margin-bottom: 39px; }
-  .publications-intro { margin-top: 26px; }
+  .publications-heading { margin-bottom: 24px; }
+  .publications-intro { margin-top: 0; }
   .pub { display: block; padding: 25px 0; }
   .venue { margin-bottom: 11px; padding: 0; }
   .pub-title { font-size: 19px; line-height: 1.45; }
