@@ -1,237 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en" data-theme="light" data-motion="running">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Xiangyu Jiang (蒋翔宇)</title>
-<meta name="description" content="Xiangyu Jiang (蒋翔宇), incoming Ph.D. student in Artificial Intelligence. Research on trustworthy generative AI, conformal prediction, world models, and reliable machine learning." />
-<link rel="icon" type="image/png" href="assets/favicon.png" />
-<style>
-  :root {
-    --bg: #ffffff;
-    --text: #1f2328;
-    --muted: #656d76;
-    --accent: #4f46e5;
-    --accent-soft: #eef2ff;
-    --border: #e6e8eb;
-    --card: #fbfbfc;
-    --badge-text: #ffffff;
-  }
-  html[data-theme="dark"] {
-    --bg: #0d1117;
-    --text: #e6edf3;
-    --muted: #9098a1;
-    --accent: #a5b4fc;
-    --accent-soft: #1c2333;
-    --border: #21262d;
-    --card: #131a24;
-    --badge-text: #0d1117;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-    line-height: 1.65;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 22px; }
-
-  /* language switch */
-  html[data-lang="en"] .zh { display: none !important; }
-  html[data-lang="zh"] .en { display: none !important; }
-
-  /* nav */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: saturate(180%) blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-name { font-weight: 700; letter-spacing: .2px; }
-  .nav-links { display: flex; gap: 16px; align-items: center; }
-  .nav-links a { color: var(--text); font-size: 15px; }
-  .nav-links a:hover { color: var(--accent); text-decoration: none; }
-  .icon-btn {
-    background: none; border: 1px solid var(--border); color: var(--text);
-    border-radius: 8px; height: 34px; min-width: 34px; padding: 0 8px; cursor: pointer; font-size: 14px;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* hero */
-  header.hero { padding: 44px 0 12px; }
-  .hero-grid { display: flex; gap: 30px; align-items: flex-start; }
-  .hero-text { flex: 1; min-width: 0; }
-  h1 { font-size: 30px; margin: 0 0 4px; letter-spacing: -.2px; }
-  .role { color: var(--muted); font-size: 16px; margin: 0 0 14px; }
-  .role strong { color: var(--text); }
-  .avatar {
-    width: 300px; height: 340px; border-radius: 16px; flex-shrink: 0;
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
-    color: #fff; display: flex; align-items: center; justify-content: center;
-    font-size: 72px; font-weight: 700; letter-spacing: 1px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.18);
-    object-fit: cover; object-position: center;
-  }
-  .socials { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
-  .socials a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; }
-  .socials a:hover { color: var(--accent); text-decoration: none; }
-  .socials svg { width: 17px; height: 17px; }
-
-  h2 {
-    font-size: 19px; margin: 38px 0 14px; padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  p.bio { margin: 0 0 8px; }
-  ul.interests { margin: 6px 0 0; padding-left: 20px; }
-  ul.interests li { margin: 3px 0; }
-
-  /* news */
-  .news { list-style: none; padding: 0; margin: 0; }
-  .news li { display: flex; gap: 14px; padding: 7px 0; border-bottom: 1px dashed var(--border); }
-  .news li:last-child { border-bottom: none; }
-  .news .date { color: var(--muted); font-size: 13px; white-space: nowrap; min-width: 86px; padding-top: 1px; }
-
-  /* publications */
-  .pub { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-  .pub:last-child { border-bottom: none; }
-  .venue { flex-shrink: 0; width: 80px; text-align: center; padding-top: 2px; }
-  .badge {
-    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .3px;
-    color: var(--badge-text); padding: 3px 8px; border-radius: 6px; line-height: 1.4;
-  }
-  .b-icml { background: #be185d; }
-  .b-neurips { background: #6d28d9; }
-  .b-uai { background: #0e7490; }
-  .b-icc { background: #b45309; }
-  .b-ijcnn { background: #047857; }
-  .b-wowmom { background: #1d4ed8; }
-  .b-icicml { background: #475569; }
-  .b-other { background: #64748b; }
-  .pub-body { min-width: 0; }
-  .pub-title { font-weight: 600; }
-  .pub-authors { color: var(--muted); font-size: 14px; margin: 2px 0; }
-  .pub-authors .me { color: var(--text); font-weight: 700; }
-  .pub-meta { font-size: 14px; color: var(--muted); }
-  .tag {
-    display: inline-block; font-size: 12px; padding: 1px 7px; border-radius: 999px;
-    border: 1px solid var(--border); color: var(--muted); margin-left: 6px;
-  }
-  .tag.solo { color: var(--accent); border-color: var(--accent); }
-  .tag.review { color: #b45309; border-color: #b45309; }
-
-  footer { color: var(--muted); font-size: 13px; text-align: center; padding: 34px 0 40px; margin-top: 30px; border-top: 1px solid var(--border); }
-
-  @media (max-width: 560px) {
-    .hero-grid { flex-direction: column-reverse; align-items: center; }
-    .avatar { width: 240px; height: 272px; font-size: 56px; }
-    .nav-links a { display: none; }
-    .venue { width: 66px; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e4f0f5">
+  <title>Xiangyu Jiang · Learning beyond the known</title>
+  <meta name="description" content="Xiangyu Jiang (蒋翔宇). Research in trustworthy generative AI, conformal prediction, world models, and reliable machine learning.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preload" as="image" href="assets/possible-worlds-v2-poster.webp" fetchpriority="high">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      let theme, lang;
+      try { theme = localStorage.getItem('theme'); lang = localStorage.getItem('lang'); } catch {}
+      root.dataset.theme = ['light','dark'].includes(theme) ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      root.dataset.lang = lang === 'zh' ? 'zh' : 'en';
+      root.lang = root.dataset.lang === 'zh' ? 'zh-CN' : 'en';
+      root.dataset.motion = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'paused' : 'running';
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site.js" defer></script>
+  <script src="assets/film-player.js" defer></script>
 </head>
 <body>
-<nav>
-  <div class="wrap nav-inner">
-    <span class="nav-name"><span class="en">Xiangyu Jiang</span><span class="zh">蒋翔宇</span></span>
-    <span class="nav-links">
+  <a class="skip-link" href="#about"><span class="en">Skip to content</span><span class="zh">跳转到正文</span></a>
+  <header class="site-header" id="siteHeader">
+    <a class="wordmark" href="#home" aria-label="Xiangyu Jiang, home"><span class="monogram">xj<span>.</span></span><span class="wordmark-name">XIANGYU<br>JIANG</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
       <a href="#about"><span class="en">About</span><span class="zh">关于</span></a>
-      <a href="#news"><span class="en">News</span><span class="zh">动态</span></a>
+      <a href="#research"><span class="en">Research</span><span class="zh">研究</span></a>
       <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span></a>
-      <a href="cv.pdf" target="_blank" rel="noopener"><span class="en">CV</span><span class="zh">简历</span></a>
-      <button class="icon-btn" id="langBtn" title="Switch language" aria-label="Switch language">中文</button>
-      <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
-    </span>
-  </div>
-</nav>
+    </nav>
+    <div class="header-actions">
+      <button class="text-button" id="langBtn" type="button" aria-label="Switch language">中文</button>
+      <button class="round-button theme-button" id="themeBtn" type="button" aria-label="Switch color theme">
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13A8.7 8.7 0 0 1 11 3.5 8.8 8.8 0 1 0 20.5 13Z"/></svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
+      <a class="header-contact" href="#contact"><span class="en">Get in touch</span><span class="zh">联系我</span><span aria-hidden="true">↗</span></a>
+      <button class="menu-button" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+    </div>
+  </header>
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation" hidden>
+    <a href="#about"><span class="en">About</span><span class="zh">关于</span><span>01</span></a>
+    <a href="#research"><span class="en">Research</span><span class="zh">研究</span><span>02</span></a>
+    <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span><span>03</span></a>
+    <a href="#news"><span class="en">News</span><span class="zh">动态</span><span>04</span></a>
+    <a href="#contact"><span class="en">Contact</span><span class="zh">联系</span><span>05</span></a>
+  </nav>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+  <aside class="chapter-nav" aria-label="Page chapters">
+    <a href="#home" class="is-current" aria-label="Opening" aria-current="location"><span>00</span><i></i></a>
+    <a href="#about" aria-label="About"><span>01</span><i></i></a>
+    <a href="#research" aria-label="Research"><span>02</span><i></i></a>
+    <a href="#publications" aria-label="Publications"><span>03</span><i></i></a>
+    <a href="#contact" aria-label="Contact"><span>04</span><i></i></a>
+  </aside>
 
-<div class="wrap">
-  <header class="hero" id="about">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <h1>Xiangyu Jiang <span style="color:var(--muted);font-weight:600;font-size:20px;">蒋翔宇</span></h1>
-        <p class="role">
-          <span class="en">Incoming Ph.D. Student in Artificial Intelligence<br/><strong>Southwestern University of Finance and Economics</strong> (Fall 2026)</span>
-          <span class="zh">人工智能方向准博士生<br/><strong>西南财经大学</strong>（2026 年秋季入学）</span>
-        </p>
-        <div class="socials">
-          <a href="mailto:xj70@sussex.ac.uk" title="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Email
-          </a>
+  <main>
+    <section class="opening" id="home" aria-label="A journey into the unknown">
+      <div class="observatory">
+        <video id="worldFilm" class="scene-film" loop muted playsinline preload="auto" poster="assets/possible-worlds-v2-poster.webp" aria-hidden="true"><source src="assets/possible-worlds-v2-mobile.mp4" media="(max-width: 760px)" type="video/mp4"><source src="assets/possible-worlds-v2-web.mp4" type="video/mp4"></video>
+        <div class="scene-shade" aria-hidden="true"></div>
+        <div class="hero-intro">
+          <p class="eyebrow"><span class="status-dot"></span> <span class="en">XIANGYU JIANG · AI RESEARCHER</span><span class="zh">蒋翔宇 · 人工智能研究者</span></p>
+          <h1><span class="en"><em>Learning</em><br>beyond the<br>known<span class="title-dot">.</span></span><span class="zh"><em>向未知，</em><br>寻找答案<span class="title-dot">。</span></span></h1>
+          <p class="hero-description"><span class="en">Exploring intelligence.<br>Building trust in what comes next.</span><span class="zh">探索智能的边界，<br>让学习在变化中依然可靠。</span></p>
+          <div class="hero-links"><a class="hero-link" href="#research"><span class="en">Explore my research</span><span class="zh">走进我的研究</span><span class="arrow-circle" aria-hidden="true">↗</span></a><button id="watchFilmBtn" class="film-watch-button" type="button"><span class="film-play" aria-hidden="true">▷</span><span class="en">Watch the full film</span><span class="zh">观看完整动画</span><span class="film-length">00:24</span></button></div>
         </div>
+        <div class="hero-outro" aria-hidden="true"><p class="eyebrow"><span class="en">A QUESTION WORTH FOLLOWING</span><span class="zh">从一个值得追问的问题开始</span></p><p class="outro-title"><span class="en">What if we could<br><em>trust the unknown?</em></span><span class="zh">面对未知，<br><em>如何建立信任？</em></span></p><p class="outro-caption"><span class="en">Uncertainty is where my research begins.</span><span class="zh">我的研究，从不确定性出发。</span></p></div>
+        <div class="hero-bottom"><a class="scroll-cue" href="#about"><span class="scroll-line" aria-hidden="true"></span><span class="en">SCROLL TO DISCOVER</span><span class="zh">向下，继续探索</span></a><div class="film-progress" aria-label="Film playback progress"><span id="filmTime">00:00</span><span class="film-track"><i id="filmProgress"></i></span><span>00:24</span></div><button class="motion-button" id="motionBtn" type="button" aria-label="Pause animation" aria-pressed="false"><span class="motion-icon" aria-hidden="true"></span><span class="motion-copy" data-motion-label>Pause</span></button></div>
+      </div>
+    </section>
 
-        <h2><span class="en">About</span><span class="zh">关于</span></h2>
-        <p class="bio en">
+    <section class="about-section section-shell" id="about">
+      <div class="section-topline"><span class="eyebrow">01 / <span class="en">THE RESEARCHER</span><span class="zh">关于我</span></span><span class="section-note en">A little context behind the questions.</span><span class="section-note zh">问题背后，是持续的好奇。</span></div>
+      <div class="about-grid">
+        <div class="about-visual"><h2 class="section-title"><span class="en">Hello,<br>I'm <em>Xiangyu.</em></span><span class="zh">你好，<br>我是<em>蒋翔宇。</em></span></h2><figure class="portrait"><img src="assets/profile.jpg" alt="Xiangyu Jiang 蒋翔宇" width="600" height="680" loading="lazy"><figcaption><span>蒋翔宇 / Xiangyu Jiang</span><span>© 2026</span></figcaption></figure></div>
+        <div class="about-copy"><div class="about-kicker"><span class="en">ARTIFICIAL INTELLIGENCE<br>WITH CURIOSITY & CARE.</span><span class="zh">以好奇探索智能，<br>以严谨建立信任。</span></div><p class="bio en">
           I am an incoming Ph.D. student in Artificial Intelligence at the
           <strong>Southwestern University of Finance and Economics</strong> (enrolling Fall 2026).
           I received my M.Sc. in Artificial Intelligence and Adaptive Systems with
           <strong>Distinction</strong> from the <strong>University of Sussex</strong>, where I was
           awarded the <strong>Dean's Honour Medal</strong> of the Artificial Intelligence Institute.
         </p>
-        <p class="bio en">
+<p class="bio en">
           My research centers on building machine learning systems that are trustworthy and
           reliable under uncertainty, including two solo-authored papers at
           <strong>ICML 2026</strong> and <strong>UAI 2026</strong>. I am broadly interested in
           conformal prediction, generative-model priors, and world models.
         </p>
-        <p class="bio zh">
+<p class="bio zh">
           我是<strong>西南财经大学</strong>人工智能方向的准博士生（2026 年秋季入学）。此前在
           <strong>萨塞克斯大学</strong>获得人工智能与自适应系统硕士学位（<strong>Distinction</strong>，英制最高等级），
           并获人工智能学院<strong>院长荣誉勋章</strong>。
         </p>
-        <p class="bio zh">
+<p class="bio zh">
           我的研究聚焦于在不确定性下构建可信、可靠的机器学习系统，已有两篇<strong>独立作者</strong>论文发表于
           <strong>ICML 2026</strong> 与 <strong>UAI 2026</strong>。研究兴趣涵盖共形预测、生成模型先验与世界模型。
-        </p>
+        </p><a class="outline-link" href="cv.pdf" target="_blank" rel="noopener"><span class="en">Read my CV</span><span class="zh">查看完整简历</span><span aria-hidden="true">↗</span></a><div class="education-notes"><div><span class="education-label">DOCTORAL STUDY</span><span class="en">Southwestern University of<br>Finance and Economics</span><span class="zh">西南财经大学</span><span class="education-year">2026</span></div><div><span class="education-label">M.SC. · DISTINCTION</span><span class="en">University of Sussex</span><span class="zh">萨塞克斯大学</span><span class="education-year"><span class="en">Dean's Honour Medal</span><span class="zh">院长荣誉勋章</span></span></div></div></div>
       </div>
-      <img class="avatar" src="assets/profile.jpg" alt="Xiangyu Jiang"
-           onerror="this.outerHTML='&lt;div class=&quot;avatar&quot;&gt;XJ&lt;/div&gt;'" />
-    </div>
-  </header>
+    </section>
 
-  <section>
-    <h2><span class="en">Research Interests</span><span class="zh">研究兴趣</span></h2>
-    <ul class="interests en">
-      <li>Trustworthy generative AI: retrieval-augmented generation, citation faithfulness, and risk control</li>
-      <li>Conformal prediction and uncertainty quantification under distribution shift</li>
-      <li>Reliable machine learning with generative priors: diffusion-model priors and calibration-aware learning</li>
-      <li>World models and reinforcement learning</li>
-    </ul>
-    <ul class="interests zh">
-      <li>可信生成式人工智能：检索增强生成、引用忠实性与风险控制</li>
-      <li>分布漂移下的共形预测与不确定性量化</li>
-      <li>生成先验驱动的可靠机器学习：扩散模型先验与校准感知学习</li>
-      <li>世界模型与强化学习</li>
-    </ul>
-  </section>
+    <section class="research-section" id="research">
+      <div class="section-shell"><div class="section-topline"><span class="eyebrow">02 / <span class="en">RESEARCH DIRECTIONS</span><span class="zh">研究方向</span></span><span class="section-note en">Different questions. Connected ideas.</span><span class="section-note zh">从不同的问题，走向相连的理解。</span></div>
+      <div class="research-grid"><div class="research-heading"><h2 class="section-title"><span class="en">Making sense<br>of <em>uncertainty.</em></span><span class="zh">在不确定中，<br><em>寻找确定。</em></span></h2><div class="orbital-study" aria-hidden="true"><div class="orbital-globe"></div><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orbit orbit-three"></span><span class="orbit-node"></span><span class="orbital-label">OBSERVE · QUESTION · UNDERSTAND</span></div></div><div class="research-list"><details class="research-item" open>
+  <summary><span class="item-number">01</span><span class="research-name"><span class="en">Trustworthy generation</span><span class="zh">可信生成</span></span><span class="expand-icon" aria-hidden="true"></span></summary>
+  <div class="research-detail"><p class="en">Trustworthy generative AI: retrieval-augmented generation, citation faithfulness, and risk control</p><p class="zh">可信生成式人工智能：检索增强生成、引用忠实性与风险控制</p></div>
+</details>
+<details class="research-item" >
+  <summary><span class="item-number">02</span><span class="research-name"><span class="en">Learning under uncertainty</span><span class="zh">不确定性下的学习</span></span><span class="expand-icon" aria-hidden="true"></span></summary>
+  <div class="research-detail"><p class="en">Conformal prediction and uncertainty quantification under distribution shift</p><p class="zh">分布漂移下的共形预测与不确定性量化</p></div>
+</details>
+<details class="research-item" >
+  <summary><span class="item-number">03</span><span class="research-name"><span class="en">Generative priors</span><span class="zh">生成模型先验</span></span><span class="expand-icon" aria-hidden="true"></span></summary>
+  <div class="research-detail"><p class="en">Reliable machine learning with generative priors: diffusion-model priors and calibration-aware learning</p><p class="zh">生成先验驱动的可靠机器学习：扩散模型先验与校准感知学习</p></div>
+</details>
+<details class="research-item" >
+  <summary><span class="item-number">04</span><span class="research-name"><span class="en">Models of the world</span><span class="zh">世界模型</span></span><span class="expand-icon" aria-hidden="true"></span></summary>
+  <div class="research-detail"><p class="en">World models and reinforcement learning</p><p class="zh">世界模型与强化学习</p></div>
+</details><a class="subtle-link" href="#publications"><span class="en">Discover the work</span><span class="zh">阅读相关论文</span><span aria-hidden="true">↓</span></a></div></div></div>
+    </section>
 
-  <section id="news">
-    <h2><span class="en">News</span><span class="zh">动态</span></h2>
-    <ul class="news">
-      <li><span class="date">2026.06</span>
-        <span class="en">&ldquo;Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift&rdquo; (solo-authored) is accepted to <strong>UAI 2026</strong>.</span>
-        <span class="zh">独立作者论文《Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift》被 <strong>UAI 2026</strong> 录用。</span>
-      </li>
-      <li><span class="date">2026.04</span>
-        <span class="en">&ldquo;CiteGuard&rdquo; (solo-authored) is accepted to <strong>ICML 2026</strong>.</span>
-        <span class="zh">独立作者论文《CiteGuard》被 <strong>ICML 2026</strong> 录用。</span>
-      </li>
-      <li><span class="date">2026</span>
-        <span class="en">Admitted as an incoming Ph.D. student in Artificial Intelligence at SWUFE (Fall 2026).</span>
-        <span class="zh">获西南财经大学人工智能方向博士录取（2026 年秋季入学）。</span>
-      </li>
-    </ul>
-  </section>
-
-  <section id="publications">
-    <h2><span class="en">Publications</span><span class="zh">论文</span></h2>
+    <section class="publications-section section-shell" id="publications">
+      <div class="section-topline"><span class="eyebrow">03 / <span class="en">PUBLICATIONS</span><span class="zh">学术论文</span></span><span class="section-note">2021 / 2026</span></div>
+      <div class="publications-heading"><h2 class="section-title"><span class="en">Ideas,<br><em>put to paper.</em></span><span class="zh">让想法，<br><em>落在纸上。</em></span></h2><p class="publications-intro"><span class="en">A collection of work on reliable learning,<br>generative models, and intelligence at the edge.</span><span class="zh">关于可靠学习、生成模型<br>与边缘智能的研究记录。</span></p></div>
+      <div class="publication-list">
     <p class="pub-meta" style="margin-bottom:6px;">
       <span class="en"><strong style="color:var(--text);">Bold</strong> denotes my name.</span>
       <span class="zh"><strong style="color:var(--text);">加粗</strong>为本人姓名。</span>
@@ -300,7 +195,7 @@
       </div>
     </div>
 
-    <h2><span class="en">Preprints / Under Review</span><span class="zh">预印本 / 在投</span></h2>
+    <h3 class="preprint-heading"><span class="en">Preprints / Under Review</span><span class="zh">预印本 / 在投</span></h3>
     <div class="pub">
       <div class="venue"><span class="badge b-neurips">NeurIPS 26</span></div>
       <div class="pub-body">
@@ -309,45 +204,32 @@
         <div class="pub-meta">Submitted to NeurIPS, 2026 <span class="tag">CCF A</span><span class="tag review"><span class="en">Under review</span><span class="zh">在投</span></span></div>
       </div>
     </div>
-  </section>
+  </div>
+    </section>
 
-  <footer>
-    &copy; <span id="year"></span> Xiangyu Jiang (蒋翔宇).
-    <span class="en">Hosted on GitHub Pages.</span><span class="zh">由 GitHub Pages 托管。</span>
-  </footer>
-</div>
+    <section class="news-section section-shell" id="news"><div class="news-heading"><p class="eyebrow"><span class="en">ALONG THE WAY</span><span class="zh">沿途记录</span></p><h2><span class="en">Recent <em>notes.</em></span><span class="zh">近期<em>动态。</em></span></h2></div><div class="news-list"><ul class="news">
+      <li><span class="date">2026.06</span>
+        <span class="en">&ldquo;Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift&rdquo; (solo-authored) is accepted to <strong>UAI 2026</strong>.</span>
+        <span class="zh">独立作者论文《Score-Based Diffusion Priors for Adaptive Conformal Inference under Distribution Shift》被 <strong>UAI 2026</strong> 录用。</span>
+      </li>
+      <li><span class="date">2026.04</span>
+        <span class="en">&ldquo;CiteGuard&rdquo; (solo-authored) is accepted to <strong>ICML 2026</strong>.</span>
+        <span class="zh">独立作者论文《CiteGuard》被 <strong>ICML 2026</strong> 录用。</span>
+      </li>
+      <li><span class="date">2026</span>
+        <span class="en">Admitted as an incoming Ph.D. student in Artificial Intelligence at SWUFE (Fall 2026).</span>
+        <span class="zh">获西南财经大学人工智能方向博士录取（2026 年秋季入学）。</span>
+      </li>
+    </ul></div></section>
 
-<script>
-  (function () {
-    var root = document.documentElement;
-
-    var savedTheme = localStorage.getItem('theme');
-    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    root.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
-    var themeBtn = document.getElementById('themeBtn');
-    function paintTheme() { themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
-    paintTheme();
-    themeBtn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      paintTheme();
-    });
-
-    var savedLang = localStorage.getItem('lang') || 'en';
-    root.setAttribute('data-lang', savedLang);
-    var langBtn = document.getElementById('langBtn');
-    function paintLang() { langBtn.textContent = root.getAttribute('data-lang') === 'en' ? '中文' : 'EN'; }
-    paintLang();
-    langBtn.addEventListener('click', function () {
-      var next = root.getAttribute('data-lang') === 'en' ? 'zh' : 'en';
-      root.setAttribute('data-lang', next);
-      localStorage.setItem('lang', next);
-      paintLang();
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  })();
-</script>
+    <section class="contact-section" id="contact"><div class="contact-orbit" aria-hidden="true"></div><div class="section-shell contact-content"><p class="eyebrow">04 / <span class="en">KEEP THE CONVERSATION GOING</span><span class="zh">让对话继续</span></p><h2><span class="en">The next idea<br>starts with <em>hello.</em></span><span class="zh">下一个想法，<br>从一句<em>你好</em>开始。</span></h2><a class="contact-email" href="mailto:xj70@sussex.ac.uk">xj70@sussex.ac.uk<span aria-hidden="true">↗</span></a><div class="contact-links"><a href="cv.pdf" target="_blank" rel="noopener"><span class="en">Curriculum vitae</span><span class="zh">个人简历</span> ↗</a><a href="#home"><span class="en">Back to the sky</span><span class="zh">回到起点</span> ↑</a></div></div><footer class="site-footer"><span>© <span id="year">2026</span> Xiangyu Jiang <span class="footer-chinese">蒋翔宇</span></span><span class="en">Curiosity, in motion.</span><span class="zh">好奇，始终在路上。</span><span class="hosting"><span class="en">Hosted on GitHub Pages.</span><span class="zh">由 GitHub Pages 托管。</span></span></footer></section>
+  </main>
+  <dialog id="filmDialog" class="film-dialog" aria-labelledby="filmDialogTitle">
+    <div class="film-dialog-inner">
+      <div class="film-dialog-header"><div><p class="eyebrow"><span class="en">AN ORIGINAL ANIMATED SHORT</span><span class="zh">原创动画短片</span></p><h2 id="filmDialogTitle"><span class="en">Possible Worlds</span><span class="zh">可能的世界</span></h2></div><button id="closeFilmBtn" type="button" aria-label="Close film">×</button></div>
+      <video id="fullFilm" class="full-film" controls playsinline preload="none" poster="assets/possible-worlds-v2-poster.webp"><source src="assets/possible-worlds-v2.mp4" type="video/mp4"></video>
+      <div class="film-dialog-footer"><span class="en">24 seconds · 1440p · 60 fps</span><span class="zh">24 秒 · 1440p 高清 · 60 帧</span><a href="assets/possible-worlds-v2.mp4" target="_blank" rel="noopener"><span class="en">Open video</span><span class="zh">独立打开视频</span> ↗</a></div>
+    </div>
+  </dialog>
 </body>
 </html>
